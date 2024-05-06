@@ -3,14 +3,5 @@
 # Eric Castorina
 # Linux Shell 
 A interactive shell that can handle multiple instructions simultaneously (in parallel).
-
-## Capabilities:
-* Has Input Validation
-* Has a built-in quit command ( or can enter Ctrl + D)
-* Executes desired commands before exiting program
-* Has a Prompt
-* Prompt does not show again until all commands have been executed
-* Exits gracefully when an inccorrect number of command line arguments to your shell program
-* Continues processing when a command does not exist or cannot be executed.
-* Prints an error message and continue processing in when a command line exceeds 512 characters.
-* Handles empty command lines and extra whitespaces
+## Design Overview
+My shell code is interactive. It starts with many included libraries. We start with stdio for user input. Next the stdlib for the exit() which I called exit(EXIT_FAILURE); & exit(EXIT_SUCCESS). These functions allow my shell to exit gracefully in certain situations such as when there's an incorrect number of command line arguments or there's too many commands in one line of input. The max number of arguments for a command is 20 and the max number of commands is 5. The string library is used for the following functions within the code: strtok, the strlen, strcmp, isspace, fgets & strcspn. The unistd lib is used for the fork & execvp functions. The fork function forks the parent and child process. The execvp function replaces the current process image for a new process image. The sys/wait lib is for the wait() & waitpid() functions which make sure every command is executeed before printing the prompt again. My code contains 3 arrays which hold the number of commands, the number of arguments per command, & the pid numbers of each command. The loop will run indefinitely until the user either types in a Ctr + D or quit. The quit command is a built-in command. My shell has input validation to make sure the user doesn't exceed the following: 512 characters per line, 5 commands per line & 20 arguments per command. The prompt continues processing when a command does not exist or cannot be executed. Prints an error message and continue processing in when a command line exceeds 512 characters. Handles empty command lines and extra whitespaces. This also handles a prompt example as follows: ls -l; ; cat file. My code will remove the excess white spaces and also handle the no command input between the semicolons and continue processing the cat file. Every feature on the checklist is implemented and works smoothly as I black / white box tested my code.
